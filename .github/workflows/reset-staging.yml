@@ -17,6 +17,6 @@ jobs:
       - name: Reset staging branch
         run: |
           git fetch origin main
-          git checkout staging
+          git checkout -b staging origin/main
           git reset --hard origin/main
           git push --force origin staging
