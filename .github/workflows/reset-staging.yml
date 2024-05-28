@@ -19,8 +19,9 @@ jobs:
 
       - name: Reset staging branch
         run: |
-          git config user.name G100g
-          git config user.email giorgio.aquino@nearform.com
+          git config --global user.name G100g
+          git config --global user.email giorgio.aquino@nearform.com
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git fetch origin main
           git checkout -b staging origin/main
           git reset --hard origin/main
