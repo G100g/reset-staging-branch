@@ -13,18 +13,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          persist-credentials: false
+        # with:
+        #   persist-credentials: false
 
       - name: Reset staging branch
         run: |
-          git config --global user.name G100g
-          git config --global user.email giorgio.aquino@nearform.com
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          # git config --global user.name G100g
+          # git config --global user.email giorgio.aquino@nearform.com
           git fetch origin main
           git checkout -b staging origin/main
           git reset --hard origin/main
           git push --force origin staging
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
