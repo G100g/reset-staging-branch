@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       - name: Reset staging branch
         run: |
@@ -20,3 +22,5 @@ jobs:
           git checkout -b staging origin/main
           git reset --hard origin/main
           git push --force origin staging
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
