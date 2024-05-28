@@ -1,0 +1,22 @@
+name: Reset staging branch on merge to main
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  reset_staging:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'staging'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Reset staging branch
+        run: |
+          git fetch origin main
+          git checkout staging
+          git reset --hard origin/main
+          git push --force origin staging
