@@ -21,6 +21,6 @@ jobs:
           # git config --global user.name G100g
           # git config --global user.email giorgio.aquino@nearform.com
           git fetch origin main
-          git checkout -b staging origin/main
+          git checkout -b staging origin/staging
           git reset --hard origin/main
           git push --force origin staging
